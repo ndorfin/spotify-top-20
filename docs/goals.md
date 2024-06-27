@@ -16,3 +16,9 @@ I'm not sure if this means:
 - B. the system recommends a customised Top 20, based on the chosen songs.
 
 I'll need to look at the Spotify API to see if it provides such functionality for B, if so, I'll take that as the desired meaning.
+
+### Spotify API recommendations
+
+It looks like Spotify has the desired [Get Recommendations](https://developer.spotify.com/documentation/web-api/reference/get-recommendations) API. It takes up to 5 songs, or 5 artists, or 5 genres as input. It conveniently defaults to a limit of 20 tracks in the output, as per the project goal.
+
+This is probably the desired intent of the goal.

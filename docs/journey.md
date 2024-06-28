@@ -150,3 +150,7 @@ We'll need the following functionality:
 - [Get Recommendations](https://developer.spotify.com/documentation/web-api/reference/get-recommendations)
 - [Create Playlist](https://developer.spotify.com/documentation/web-api/reference/create-playlist)
 - [Add tracks to Playlist](https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist)
+
+### Building the search component
+
+I see the results can be limited to a type: e.g. album, track, artist etc. It might be useful to allow the user to search for anything, but we only show results as tracks. Let's see who how well that works.

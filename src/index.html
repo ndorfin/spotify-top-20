@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play me more, DJ!</title>
+<script type="module" src="./mjs/index.mjs" defer></script>
+<ul>
+	<li>
+		<a href="#article_search">Search for a song</a>
+	</li>
+</ul>
+
+<main>
+	<article id="article_search">
+		<pm-search>
+			<form method="POST" action="/search-results">
+				<div class="form_row">
+					<label for="input_search_query">Search for a song:</label>
+					<div class="form_field">
+						<input type="search" name="query" id="input_search_query" required>
+					</div>
+				</div>
+				<div class="form_actions">
+					<button type="submit">Search</button>
+				</div>
+			</form>
+		</pm-search>
+	</article>
+</main>
+

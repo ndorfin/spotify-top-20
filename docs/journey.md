@@ -106,3 +106,47 @@ This screen could also be used to help with continuous or uninterrupted playback
 ![Playlist saved](./images/wireframes/wf-playlist-saved.png)
 
 Another interstitial screen. This might be better as a toast notification though.
+
+### Requirements
+
+#### Spotify access
+
+I signed up as a Spotify developer, and defined my first app. This'll help me with the API credentials I need later.
+
+The Developer Portal has some handy samples on how to interrogate the API for song recommendations and generating playlists - nice!
+
+#### Local environment
+
+I'll need something running locally, either to simulate a deployed app, or act as the OAuth broker if I go that route.
+
+I'd like to avoid mountains of Node infrastructure though. I wonder how far I can get with that idea in mind?
+
+
+## Development
+
+Let's dive into development now. [This is what you came for, right? :P]
+
+### Priorities
+
+Let's try get these out first:
+
+1. Set up a bare-bones web server
+1. A form-based search Web Component (of songs by title) that initiates requests against the API without errors.
+1. Convert an example set of search results (JSON) into a digestible Web Component list.
+1. Append an 'Add' button to each of the search results items, and wrap the results in a form.
+1. A screen that takes a given song (and associated Spotify Track ID) as input for another form that can handle 1-5 items.
+1. A form-based Web Component that initiates a request against the Recommendations API
+1. A list Web Component that shows the results of the Recommendations response, and modifies them for input into a Playlist.
+
+[That makes me think there might be special requirements for generating a Playlist. I better check the Create Playlist API]
+
+It looks like the [Create Playlist](https://developer.spotify.com/documentation/web-api/reference/create-playlist) creates an empty playlist. We'll need a multi-phase process to create the Playlist from the Recommendations.
+
+### Spotify endpoints required
+
+We'll need the following functionality:
+
+- [Search for Item](https://developer.spotify.com/documentation/web-api/reference/search)
+- [Get Recommendations](https://developer.spotify.com/documentation/web-api/reference/get-recommendations)
+- [Create Playlist](https://developer.spotify.com/documentation/web-api/reference/create-playlist)
+- [Add tracks to Playlist](https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist)

@@ -154,3 +154,7 @@ We'll need the following functionality:
 ### Building the search component
 
 I see the results can be limited to a type: e.g. album, track, artist etc. It might be useful to allow the user to search for anything, but we only show results as tracks. Let's see who how well that works.
+
+### Investigate using Express as a broker
+
+I don't like the restrictions the Authorization by PKCE strategy has, so I'm going to investigate using Express, [as per this sample](https://github.com/spotify/web-api-examples/blob/master/authorization/authorization_code/app.js).

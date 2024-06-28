@@ -57,4 +57,52 @@ Let's get rid of the 'all playlists' and 'home' notions, and go with a simple wi
 
 ### Wireframes
 
-WIP
+The first draft of the flow looks something like this…
+
+#### 1. Start
+
+![Start screen](./images/wireframes/wf-start.png)
+
+Introduce the app, and ask for the first inspirational song.
+
+#### 2. Search results
+
+![Search results](./images/wireframes/wf-search-results.png)
+
+Show results for the entered search terms.
+
+The user could enter a new term here, or select from one of the songs in the results.
+
+#### 3. Song selected
+
+![Song selected](./images/wireframes/wf-song-selected.png)
+
+Once the user has selected at least one song, they can proceed onto generating their new recommendations playlist, or add more songs to further narrow down their recommendations.
+
+#### 4. Loading recommendations
+
+![Loading recommendations](./images/wireframes/wf-loading-recommendations.png)
+
+I'm not sure how long it'll take to generate the recommendations, so I thought it prudent to have an interstitial loading screen.
+
+#### 5. Playlist preview
+
+![Playlist preview](./images/wireframes/wf-playlist-preview.png)
+
+At this point, the user could start playing the playlist, or save the playlist to their Spotify profile.
+
+Show the user first five songs in the recommendations, and give them an opportunity to edit the generated playlist name.
+
+#### 6. Spotify OAuth
+
+![Spotify OAuth](./images/wireframes/wf-spotify-oauth.png)
+
+If the user hasn't been authenticated prior, then let's use Spotify's OAuth to help us save the playlist against their profile.
+
+This screen could also be used to help with continuous or uninterrupted playback.
+
+#### 7. Playlist saved
+
+![Playlist saved](./images/wireframes/wf-playlist-saved.png)
+
+Another interstitial screen. This might be better as a toast notification though.

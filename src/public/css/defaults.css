@@ -1,0 +1,26 @@
+html {
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	background-color: var(--color-background-default);
+	color: var(--color-foreground-default);
+	font-size: 100%;
+}
+
+body {
+	margin: var(--spacing-container);
+}
+
+[type="search"],
+[type="text"],
+[type="submit"] {
+	appearance: none;
+	font-size: 1rem;
+	font-family: inherit;
+	padding-block: var(--field-padding-block);
+	padding-inline: var(--field-padding-inline);
+	border-width: var(--field-border-width);
+	border-style: var(--field-border-style);
+	border-color: var(--field-border-color);
+	border-radius: var(--field-border-radius);
+	background-color: inherit;
+	color: inherit;
+}

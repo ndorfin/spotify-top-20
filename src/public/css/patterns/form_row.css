@@ -1,0 +1,7 @@
+.form_row {
+
+}
+
+.form_row > label {
+	font-weight: 700;
+}

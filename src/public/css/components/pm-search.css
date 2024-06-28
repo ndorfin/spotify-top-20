@@ -1,0 +1,21 @@
+pm-search {
+
+}
+
+pm-search form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--field-padding-inline);
+}
+
+pm-search .form_actions {
+	align-self: end;	
+}
+
+@media (min-width: 640px) {
+	pm-search form {
+		flex-direction: row;
+		align-items: end;
+	}
+}
+

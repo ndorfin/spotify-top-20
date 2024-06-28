@@ -1,0 +1,19 @@
+:root {
+	--spacing-container: 1rem;
+	/* Colours */
+	--color-background-default: #fff;
+	--color-foreground-default: #333;
+	/* Form fields & buttons */
+	--field-border-width: 2px;
+	--field-border-color: var(--color-foreground-default);
+	--field-border-style: solid;
+	--field-border-radius: 0.5rem;
+	--field-padding-block: 0.5rem;
+	--field-padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+	:root {
+		--spacing-container: 2rem;
+	}
+}

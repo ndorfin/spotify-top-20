@@ -1,0 +1,11 @@
+.form_field {
+
+}
+
+.form_field > * {
+	width: 100%;
+}
+
+label + .form_field {
+	margin-block-start: 0.25rem;
+}

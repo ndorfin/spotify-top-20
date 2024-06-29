@@ -7,14 +7,14 @@
 <script type="module" src="/mjs/index.mjs" defer></script>
 <ul>
 	<li>
-		<a href="#article_search">Search for a song</a>
+		<a href="#article_search">Search for a song (<code>pm-search</code>)</a>
 	</li>
 </ul>
 
 <main>
 	<article id="article_search">
 		<pm-search>
-			<form method="POST" action="/search-results">
+			<form method="GET" action="/search">
 				<div class="form_row">
 					<label for="input_search_query">Search for a song:</label>
 					<div class="form_field">

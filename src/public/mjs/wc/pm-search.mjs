@@ -1,6 +1,6 @@
 export default class PMSearch extends HTMLElement {
 	#handleSubmit(event) {
-		event.preventDefault();
+		// event.preventDefault();
 
 		let formData = new FormData(this.form);
 		let query = formData.get('query');

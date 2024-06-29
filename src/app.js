@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.get('/search', async (req, res, next) => {
 	try {
-		let queryValue = req.query.q;
+		let queryValue = req.query.query_text;
 		await searchAPI(queryValue).then(response => {
 			res.render('search', {
 				query: queryValue,

@@ -9,13 +9,17 @@ pm-search form {
 }
 
 pm-search .form_actions {
-	align-self: end;	
+	align-self: end;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 400px) {
 	pm-search form {
 		flex-direction: row;
 		align-items: end;
+	}
+
+	pm-search .form_row {
+		flex-grow: 1;
 	}
 }
 

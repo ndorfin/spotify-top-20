@@ -1,0 +1,61 @@
+.list_tracks {
+	--list-tracks-image-dimension: 2rem;
+
+	list-style-type: "";
+	padding-inline-start: 0;
+	margin-inline: 0;
+	margin-block-start: calc(var(--spacing-container) * 2);
+}
+
+.list_tracks > li + li {
+	margin-block-start: 1rem;
+}
+
+.list_tracks dl {
+	display: grid;
+	grid-template-areas: 
+		"image artists duration actions"
+		"image title   duration actions"
+	;
+	grid-template-columns: 
+		var(--list-tracks-image-dimension)
+		auto
+		5ch
+		min-content
+	;
+	column-gap: 1rem;
+	margin: 0;
+}
+
+.list_tracks dt {
+	display: none;
+}
+
+.list_tracks dd {
+	margin-inline-start: 0;
+}
+
+.list_tracks .track_album {
+	grid-area: image;
+	align-self: center;
+}
+
+.list_tracks .track_artists {
+	grid-area: artists;
+	font-weight: 700;
+}
+
+.list_tracks .track_name {
+	grid-area: title;
+}
+
+.list_tracks .track_duration {
+	grid-area: duration;
+	align-self: center;
+}
+
+.list_tracks .track_actions {
+	grid-area: actions;
+	align-self: center;
+}
+

@@ -6,7 +6,8 @@ html {
 }
 
 body {
-	margin: var(--spacing-container);
+	margin-inline: var(--spacing-container);
+	margin-block: calc(var(--spacing-container) * 2);
 }
 
 [type="search"],
@@ -23,4 +24,14 @@ body {
 	border-radius: var(--field-border-radius);
 	background-color: inherit;
 	color: inherit;
+}
+
+img {
+	max-inline-size: 100%;
+	vertical-align: middle;
+}
+
+main {
+	max-inline-size: 37.5rem; /* 600px */
+	margin: auto;
 }

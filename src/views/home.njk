@@ -1,0 +1,9 @@
+{% set title = 'Play me more, DJ!' %}
+{% set page_heading = 'Play me more, DJ!' %}
+{% extends 'layouts/default.njk' %}
+
+{% block content %}
+	<p>Get recommendations based on songs you love</p>
+
+	{% include 'partials/form_search.njk' %}
+{% endblock %}

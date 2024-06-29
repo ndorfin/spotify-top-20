@@ -64,14 +64,14 @@ async function search(query) {
 	}
 }
 
-async function searchAPI(queryParams) {
+async function searchAPI(queryValue) {
 	if (tokenIsStale()) {
 		await getToken().then(tokenResponse => {
 			accessToken = tokenResponse.access_token;
 			expiryTime = setNewTokenExpiry(tokenResponse.expires_in);
 		});
 	}
-	return await search(queryParams.q).then(searchResponse => {
+	return await search(queryValue).then(searchResponse => {
 		return searchResponse;
 	});
 }

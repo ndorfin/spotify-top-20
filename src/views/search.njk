@@ -1,0 +1,36 @@
+{% set title = 'Search' %}
+{% set page_heading = 'Search' %}
+{% extends 'layouts/default.njk' %}
+
+{% block content %}
+	{% include 'partials/form_search.njk' %}
+	<ul>
+		{% for item in items %}
+			<li>
+				<dl>
+					{# {{item | dump}} #}
+					<div>
+						<dt>Album art</dt>
+						<dd>
+							<img src="{{ item.album.images[0].url }}" width="32" height="32" alt>
+						</dd>
+					</div>
+					<div>
+						<dt>Artist(s)</dt>
+						{% for artist in item.artists %}
+							<dd>{{ artist.name }}</dd>
+						{% endfor %}
+					</div>
+					<div>
+						<dt>Track name</dt>
+						<dd>{{ item.name }}</dd>
+					</div>
+					<div>
+						<dt>Duration</dt>
+						<dd>{{ item.duration_ms }}</dd>
+					</div>
+				</dl>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

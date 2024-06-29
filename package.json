@@ -3,14 +3,11 @@
   "version": "0.0.1",
   "description": "This repo is the basis for a take-home-project I was assigned during an interview process.",
   "license": "MIT",
-	"scripts": {
+  "scripts": {
     "start": "node src/app.js"
   },
   "dependencies": {
-    "cookie-parser": "1.4.6",
-    "cors": "2.8.5",
     "express": "4.19.2",
-    "querystring": "~0.2.1",
-    "request": "2.88.2"
+		"nunjucks": "^3.2.4"
   }
 }

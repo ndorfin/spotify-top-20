@@ -2,16 +2,13 @@
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Play me more, DJ!</title>
+<title>{{ title }}</title>
 <script type="module" src="/mjs/index.mjs" defer></script>
-<nav>
-	<ul>
-		<li>
-			<a href="/login">Log in</a>
-		</li>
-	</ul>
-</nav>
 <main>
-	
+	<header>
+		<h1>{{ page_heading }}</h1>
+	</header>
+	{% block content %}{% endblock %}
 </main>
+
 

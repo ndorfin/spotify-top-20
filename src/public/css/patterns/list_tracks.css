@@ -45,6 +45,15 @@
 	font-weight: 700;
 }
 
+.list_tracks .track_artists dd {
+	display: inline;
+}
+
+.list_tracks .track_artists dd + dd::before {
+	content: ", ";
+	margin-inline-start: -0.25em;
+}
+
 .list_tracks .track_name {
 	grid-area: title;
 }

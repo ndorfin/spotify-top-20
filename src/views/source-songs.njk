@@ -1,0 +1,22 @@
+{% set page_meta = {
+	title: 'Source songs',
+	page_heading: 'Source songs',
+	id: 'source-songs'
+} %}
+{% extends 'layouts/default.njk' %}
+{% block content %}
+	<form id="preview_recommendations" action="/preview-recommendations" method="GET">
+		{% for trackId in addedTracks %}
+		<input type="hidden" name="add" value="{{ trackId }}">
+		{% endfor %}
+	</form>
+	<form id="back_to_search" action="/search" method="GET">
+		{% for trackId in addedTracks %}
+		<input type="hidden" name="add" value="{{ trackId }}">
+		{% endfor %}
+	</form>
+	
+
+	<button type="submit" form="preview_recommendations">Preview recommendations</button>
+	<button type="submit" form="back_to_search">Add more songs</button>
+{% endblock%}

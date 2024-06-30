@@ -39,11 +39,13 @@ async function getToken() {
 	}
 }
 
-async function search(query) {
+async function search(query, offset) {
 	try {
 		const searchParams = new URLSearchParams({
 			q: query,
 			type: 'track',
+			limit: 5,
+			offset: offset || 0
 		});
 		const searchURL = `${ENDPOINTS.SEARCH}?${searchParams}`;
 		const response = await fetch(searchURL, {

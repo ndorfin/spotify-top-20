@@ -18,16 +18,30 @@ app.get('/', (req, res) => {
 
 app.get('/search', async (req, res, next) => {
 	try {
+		let addedTracks = req.query.add;
 		let queryValue = req.query.query_text;
-		await searchAPI(queryValue).then(items => {
+		let offset = req.query.offset || 0;
+		await searchAPI(queryValue, offset).then(items => {
 			res.render('search', {
 				query: queryValue,
-				items: items
+				items: items,
+				offset: offset,
+				addedTracks: [...addedTracks],
 			});
 		});
 	} catch(error) {
 		return next(error);
 	}
+});
+
+app.get('/source-songs', async (req, res) => {
+	let addedTracks = req.query.add;
+	res.render('source-songs', {addedTracks: [...addedTracks]});
+});
+
+app.get('/preview-recommendations', async (req, res) => {
+	let addedTracks = req.query.add;
+	res.render('preview-recommendations', {addedTracks: [...addedTracks]});
 });
 
 console.log('Listening on 8888');

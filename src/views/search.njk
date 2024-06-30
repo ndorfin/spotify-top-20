@@ -7,42 +7,52 @@
 
 {% block content %}
 	{% include 'partials/form_search.njk' %}
-	<form>
-		<ul class="list_tracks">
-			{% for item in items %}
-				<li>
-					<dl>
-						<div class="track_album">
-							<dt>Album art</dt>
-							<dd>
-								<picture>
-									<source srcset="{{ item.album_images.large }}" media="(min-resolution: 4x)">
-									<img src="{{ item.album_images.default }}" width="64" height="64" alt="{{ item.album_name }}">
-								</picture>
-							</dd>
-						</div>
-						<div class="track_artists">
-							<dt>Artist(s)</dt>
-							<dd>{{ item.artists }}</dd>
-						</div>
-						<div class="track_name">
-							<dt>Track name</dt>
-							<dd>{{ item.track_name }}</dd>
-						</div>
-						<div class="track_duration">
-							<dt>Duration</dt>
-							<dd>{{ item.duration }}</dd>
-						</div>
-						<div class="track_actions">
-							<dt>Actions</dt>
-							<dd>
-								<button type="submit" name="add" value="{{ item.track_id }}">
-									Add
-								</button>
-						</div>
-					</dl>
-				</li>
+	<form id="add_to_source_songs" method="GET" action="/source-songs">
+		{% if addedTracks %}
+			{% for trackId in addedTracks %}
+			<input type="hidden" name="add" value="{{ trackId }}">
 			{% endfor %}
-		</ul>
+			<p>
+				{{ addedTracks.length }} item(s) added
+				<button type="submit">Back to Preview</button>
+			</p>
+		{% endif %}
 	</form>
+
+	<ul class="list_tracks">
+		{% for item in items %}
+			<li>
+				<dl>
+					<div class="track_album">
+						<dt>Album art</dt>
+						<dd>
+							<picture>
+								<source srcset="{{ item.album_images.large }}" media="(min-resolution: 4x)">
+								<img src="{{ item.album_images.default }}" width="64" height="64" alt="{{ item.album_name }}">
+							</picture>
+						</dd>
+					</div>
+					<div class="track_artists">
+						<dt>Artist(s)</dt>
+						<dd>{{ item.artists }}</dd>
+					</div>
+					<div class="track_name">
+						<dt>Track name</dt>
+						<dd>{{ item.track_name }}</dd>
+					</div>
+					<div class="track_duration">
+						<dt>Duration</dt>
+						<dd>{{ item.duration }}</dd>
+					</div>
+					<div class="track_actions">
+						<dt>Actions</dt>
+						<dd>
+							<button type="submit" name="add" form="add_to_source_songs" value="{{ item.track_id }}">
+								Add
+							</button>
+					</div>
+				</dl>
+			</li>
+		{% endfor %}
+	</ul>
 {% endblock %}

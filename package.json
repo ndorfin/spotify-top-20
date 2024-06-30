@@ -4,7 +4,7 @@
   "description": "This repo is the basis for a take-home-project I was assigned during an interview process.",
   "license": "MIT",
   "scripts": {
-    "start": "node src/app.js"
+    "start": "node --env-file=.env src/app.js"
   },
   "dependencies": {
     "express": "4.19.2",

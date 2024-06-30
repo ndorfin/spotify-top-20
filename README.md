@@ -12,8 +12,17 @@ Read more:
 Requires:
 
 - Node.js ~20.12.2
-- A valid Spotify API `CLIENT_ID` and `SECRET` in `src/credentials.js`.\
-  See [`src/credentials-template.js`](./src/credentials-template.js).
+- A Spotify Developer Account
+	- that has a custom app defined
+		- that has a client ID and secret
+
+Set up your local environment:
+
+1. Copy the [`.env.sample`](./.env.sample) as `.env`:\
+	 `cp .env.sample .env`
+1. Adjust the values in `.env` to your Spotify Developer account details for the app associated with this Node application
+1. Finally, install the dependencies:\
+	 `npm i`
 
 To start the local environment:
 

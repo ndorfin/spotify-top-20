@@ -4,10 +4,15 @@
   "description": "This repo is the basis for a take-home-project I was assigned during an interview process.",
   "license": "MIT",
   "scripts": {
-    "start": "node --env-file=.env src/app.js"
+    "prod": "node --env-file=.production.env src/app.js",
+    "dev": "nodemon --env-file=.env src/app.js",
+    "start": "npm run dev"
   },
   "dependencies": {
     "express": "4.19.2",
-		"nunjucks": "^3.2.4"
-  }
+    "nunjucks": "^3.2.4"
+  },
+	"devDependencies": {
+		"nodemon": "^3.1.4"
+	}
 }

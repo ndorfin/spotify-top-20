@@ -1,5 +1,5 @@
 let express = require('express');
-let { searchAPI } = require('./spotify-api.js');
+let { searchAPI } = require('./api/spotify.js');
 let app = express();
 let nunjucks = require('nunjucks');
 
@@ -19,10 +19,10 @@ app.get('/', (req, res) => {
 app.get('/search', async (req, res, next) => {
 	try {
 		let queryValue = req.query.query_text;
-		await searchAPI(queryValue).then(response => {
+		await searchAPI(queryValue).then(items => {
 			res.render('search', {
 				query: queryValue,
-				items: response.tracks.items
+				items: items
 			});
 		});
 	} catch(error) {

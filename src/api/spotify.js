@@ -1,3 +1,4 @@
+const formatTracksDataFromSpotify = require('../formatters/tracks.js');
 const ENDPOINTS = {
 	SEARCH: 'https://api.spotify.com/v1/search',
 	TOKEN: 'https://accounts.spotify.com/api/token',
@@ -71,7 +72,7 @@ async function searchAPI(queryValue) {
 		});
 	}
 	return await search(queryValue).then(searchResponse => {
-		return searchResponse;
+		return formatTracksDataFromSpotify(searchResponse.tracks.items);
 	});
 }
 

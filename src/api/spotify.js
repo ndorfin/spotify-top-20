@@ -2,6 +2,7 @@ const formatTracksDataFromSpotify = require('../formatters/tracks.js');
 const ENDPOINTS = {
 	SEARCH: 'https://api.spotify.com/v1/search',
 	TOKEN: 'https://accounts.spotify.com/api/token',
+	TRACKS_INFO: 'https://api.spotify.com/v1/tracks',
 }
 
 let accessToken = null;
@@ -45,7 +46,7 @@ async function search(query, offset) {
 			q: query,
 			type: 'track',
 			limit: 5,
-			offset: offset || 0
+			offset: offset
 		});
 		const searchURL = `${ENDPOINTS.SEARCH}?${searchParams}`;
 		const response = await fetch(searchURL, {
@@ -66,18 +67,56 @@ async function search(query, offset) {
 	}
 }
 
-async function searchAPI(queryValue) {
+async function searchAPI(queryValue, offset) {
 	if (tokenIsStale()) {
 		await getToken().then(tokenResponse => {
 			accessToken = tokenResponse.access_token;
 			expiryTime = setNewTokenExpiry(tokenResponse.expires_in);
 		});
 	}
-	return await search(queryValue).then(searchResponse => {
+	return await search(queryValue, offset).then(searchResponse => {
 		return formatTracksDataFromSpotify(searchResponse.tracks.items);
 	});
 }
 
+async function trackInfo(trackIds) {
+	try {
+		const searchParams = new URLSearchParams({
+			ids: trackIds
+		});
+		const searchURL = `${ENDPOINTS.TRACKS_INFO}?${searchParams}`;
+		const response = await fetch(searchURL, {
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization': 'Bearer ' + accessToken,
+			},
+		});
+		
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`);
+		}
+		
+		return await response.json();
+	
+	} catch (error) {
+		console.error(error.message);
+	}
+}
+
+async function tracksInfoAPI(trackIds) {
+	if (tokenIsStale()) {
+		await getToken().then(tokenResponse => {
+			accessToken = tokenResponse.access_token;
+			expiryTime = setNewTokenExpiry(tokenResponse.expires_in);
+		});
+	}
+	return await trackInfo(trackIds).then(trackInfoResponse => {
+		return formatTracksDataFromSpotify(trackInfoResponse.tracks);
+	});
+}
+
+
 module.exports = {
-	searchAPI: searchAPI
+	searchAPI: searchAPI,
+	tracksInfoAPI: tracksInfoAPI,
 };

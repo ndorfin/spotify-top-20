@@ -1,0 +1,21 @@
+<div class="track_album">
+	<dt>Album art</dt>
+	<dd>
+		<picture>
+			<source srcset="{{ track.album_images.large }}" media="(min-resolution: 4x)">
+			<img src="{{ track.album_images.default }}" width="64" height="64" alt="{{ track.album_name }}">
+		</picture>
+	</dd>
+</div>
+<div class="track_artists">
+	<dt>Artist(s)</dt>
+	<dd>{{ track.artists }}</dd>
+</div>
+<div class="track_name">
+	<dt>Track name</dt>
+	<dd>{{ track.name }}</dd>
+</div>
+<div class="track_duration">
+	<dt>Duration</dt>
+	<dd>{{ track.duration }}</dd>
+</div>

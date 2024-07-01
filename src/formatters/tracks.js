@@ -32,9 +32,9 @@ function formatTracksDataFromSpotify(spotifyTrackData) {
 
 	spotifyTrackData.forEach(track => {
 		let trackTemplate = {
-			track_id: track.id,
+			id: track.id,
 			artists: formatArtists(track.artists),
-			track_name: track.name,
+			name: track.name,
 			album_name: track.album.name,
 			duration: formatDuration(track.duration_ms),
 			album_images: formatImages(track.album.images),

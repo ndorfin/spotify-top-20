@@ -1,32 +1,41 @@
 let express = require('express');
-let { searchAPI } = require('./api/spotify.js');
+let { searchAPI, tracksInfoAPI } = require('./api/spotify.js');
 let app = express();
 let nunjucks = require('nunjucks');
 
+/* Express configuration */
 nunjucks.configure(__dirname + '/views', {
 	autoescape: true,
 	express: app
 });
-
 app.set('view engine', 'njk');
-
 app.use(express.static(__dirname + '/public'));
 
+/* Routes */
 app.get('/', (req, res) => {
-	res.render('home');
+	res.render('home', {
+		offset: 0
+	});
 });
 
 app.get('/search', async (req, res, next) => {
+	let search = req.query.search;
+	let offset = req.query.offset || 0;
+	let selected = [];
+
+	if (req.query.selected) {
+		selected = Array.isArray(req.query.selected) ? req.query.selected : [req.query.selected];
+	}
+
+	console.log('selected', selected);
+
 	try {
-		let addedTracks = req.query.add;
-		let queryValue = req.query.query_text;
-		let offset = req.query.offset || 0;
-		await searchAPI(queryValue, offset).then(items => {
+		await searchAPI(search, offset).then(tracks => {
 			res.render('search', {
-				query: queryValue,
-				items: items,
+				search: search,
+				results: tracks,
 				offset: offset,
-				addedTracks: [...addedTracks],
+				selected: selected,
 			});
 		});
 	} catch(error) {
@@ -34,9 +43,26 @@ app.get('/search', async (req, res, next) => {
 	}
 });
 
-app.get('/source-songs', async (req, res) => {
-	let addedTracks = req.query.add;
-	res.render('source-songs', {addedTracks: [...addedTracks]});
+app.get('/selected-songs', async (req, res, next) => {
+	let newTrackIds = [req.query.add];
+	let queryValue = req.query.search;
+	let offset = req.query.offset || 0;
+	if (req.query.selected) newTrackIds.push(req.query.selected);
+	
+	console.log('newTrackIds', newTrackIds);
+
+	try {
+		await tracksInfoAPI(newTrackIds).then(formattedTracks => {
+			res.render('selected-songs', {
+				selected: newTrackIds,
+				tracks: [...formattedTracks],
+				search: queryValue,
+				offset: offset,
+			});
+		});
+	} catch(error) {
+		return next(error);
+	}
 });
 
 app.get('/preview-recommendations', async (req, res) => {

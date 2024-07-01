@@ -1,0 +1,42 @@
+{% set page_meta = {
+	title: 'Selected songs',
+	page_heading: 'Selected songs',
+	id: 'selected-songs'
+} %}
+{% extends 'layouts/default.njk' %}
+{% block content %}
+	<form action="/get-recommendations" method="GET">
+		<input type="hidden" name="search" value="{{ search }}">
+		<input type="hidden" name="offset" value="{{ offset }}">
+		{% if selected %}
+			{% for trackId in selected %}
+				<input type="hidden" name="selected" value="{{ trackId }}">
+			{% endfor %}
+			<p>You've got great taste!</p>
+			<ul class="list_tracks">
+				{% for track in tracks %}
+					<li>
+						<dl>
+							{% include 'partials/track_info.njk' %}
+							<div class="track_actions">
+								<dt>Actions</dt>
+								<dd>
+									<button type="submit" name="remove" value="{{ track.id }}">
+										Remove
+									</button>
+								</dd>
+							</div>
+						</dl>
+					</li>
+				{% endfor %}
+			</ul>
+			<div class="form_actions">
+				<button type="submit" data-scheme="primary">Get my recommendations</button>
+				<p>or</p>
+				<button type="submit" formaction="/search">Add other songs</button>
+			</div>
+		{% else %}
+			<p>No songs selected yet</p>
+		{% endif %}
+	</form>
+{% endblock%}

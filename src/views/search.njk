@@ -9,9 +9,10 @@
 	{% include 'partials/form_search.njk' %}
 	<form method="GET" action="/search">
 		<input type="hidden" name="search" value="{{ search }}">
-		{% if selected.length > 0 %}
-			{% for track in selected %}
-			<input type="hidden" name="selected" value="{{ track.id }}">
+		<input type="hidden" name="offset" value="{{ offset }}">
+		{% if selected.length %}
+			{% for trackId in selected %}
+			<input type="hidden" name="selected" value="{{ trackId }}">
 			{% endfor %}
 		{% endif %}
 		<p>Showing results for '{{ search }}'</p>
@@ -23,9 +24,13 @@
 						<div class="track_actions">
 							<dt>Actions</dt>
 							<dd>
-								<button type="submit" name="selected" data-scheme="primary" value="{{ track.id }}">
-									Add
-								</button>
+								{% if selected.length and track.id in selected %}
+									Added
+								{% else %}
+									<button type="submit" name="add" formaction="/selected-songs" data-scheme="primary" value="{{ track.id }}">
+										Add
+									</button>
+								{% endif %}
 							</dd>
 						</div>
 					</dl>
@@ -42,10 +47,11 @@
 			{% endif %}
 		</div>
 
-		{% if selected.length > 0 %}
+		{% if selected.length %}
+			{{ selected | dump }}
 			<p>
 				{{ selected.length }} item(s) selected
-				<button type="submit">Back to Preview</button>
+				<button type="submit" formaction="/selected-songs">Back to Preview</button>
 			</p>
 		{% endif %}
 

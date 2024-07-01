@@ -70,7 +70,7 @@ app.get('/selected-songs', async (req, res, next) => {
 	}
 });
 
-app.get('/preview-recommendations', async (req, res) => {
+app.get('/preview-recommendations', async (req, res, next) => {
 	let selected = [];
 	if (req.query.selected) {
 		selected = Array.isArray(req.query.selected) ? req.query.selected : [req.query.selected];
@@ -86,8 +86,6 @@ app.get('/preview-recommendations', async (req, res) => {
 	} catch(error) {
 		return next(error);
 	}
-
-
 });
 
 console.log('Listening on 8888');

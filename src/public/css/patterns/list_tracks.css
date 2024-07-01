@@ -21,7 +21,7 @@
 		var(--list-tracks-image-dimension)
 		auto
 		5ch
-		min-content
+		4.5rem
 	;
 	column-gap: 1rem;
 	margin: 0;
@@ -68,4 +68,5 @@
 .list_tracks .track_actions {
 	grid-area: actions;
 	align-self: center;
+	justify-self: end;
 }

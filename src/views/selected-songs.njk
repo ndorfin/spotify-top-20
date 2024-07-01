@@ -30,7 +30,7 @@
 					</li>
 				{% endfor %}
 			</ul>
-			<div class="form_actions">
+			<div class="form_actions" data-mode="binary-decision">
 				<button type="submit" data-scheme="primary">Get my recommendations</button>
 				<p>or</p>
 				<button type="submit" formaction="/search">Add other songs</button>
@@ -39,4 +39,4 @@
 			<p>No songs selected yet</p>
 		{% endif %}
 	</form>
-{% endblock%}
+{% endblock %}

@@ -5,13 +5,28 @@
 } %}
 {% extends 'layouts/default.njk' %}
 {% block content %}
-	<ul class="list_tracks">
-		{% for track in tracks %}
-			<li>
-				<dl>
-					{% include 'partials/track_info.njk' %}
-				</dl>
-			</li>
-		{% endfor %}
-	</ul>
-{% endblock%}
+	{% if tracks %}
+		<ul class="list_tracks">
+			{% for track in tracks %}
+				<li>
+					<dl>
+						{% include 'partials/track_info.njk' %}
+					</dl>
+				</li>
+			{% endfor %}
+		</ul>
+		{# <form>
+			<div class="form_row">
+				<label>Give this playlist a name:</label>
+				<div class="form_field">
+					<input type="text" name="name" required>
+				</div>
+			</div>
+			<div class="form_actions">
+				<button type="submit">Save to Spotify</button>
+			</div>
+		</form> #}
+	{% else %}
+		<p>No recommendations available, sorry.</p>
+	{% endif %}
+{% endblock %}

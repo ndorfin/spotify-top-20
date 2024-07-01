@@ -1,0 +1,40 @@
+.form_actions[data-mode="binary-decision"] {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	margin-block-start: calc(var(--spacing-container) * 2);
+}
+
+.form_actions[data-mode="binary-decision"] p {
+	position: relative;
+	margin-block: 0;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.form_actions[data-mode="binary-decision"] p::before,
+.form_actions[data-mode="binary-decision"] p::after {
+	content: "";
+	display: block;
+	position: absolute;
+}
+
+.form_actions[data-mode="binary-decision"] p::before {
+	inset: -0.5rem;
+	background-color: var(--color-background-default);
+	z-index: -1;
+}
+
+.form_actions[data-mode="binary-decision"] p::after {
+	--or-separator-thickness: 2px;
+	z-index: -2;
+	opacity: 0.5;
+	border-block-start: var(--or-separator-thickness) dashed var(--color-foreground-default);
+	block-size: 0;
+	inline-size: 10rem;
+	inset-inline-start: 50%;
+	inset-block-start: 50%;
+	margin-inline-start: -5rem;
+	margin-block-start: calc(var(--or-separator-thickness) / -2);
+}

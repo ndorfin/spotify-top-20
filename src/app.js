@@ -1,5 +1,5 @@
 let express = require('express');
-let { searchAPI, tracksInfoAPI } = require('./api/spotify.js');
+let { searchAPI, tracksInfoAPI, recommendationsAPI } = require('./api/spotify.js');
 let app = express();
 let nunjucks = require('nunjucks');
 
@@ -72,17 +72,22 @@ app.get('/selected-songs', async (req, res, next) => {
 
 app.get('/preview-recommendations', async (req, res) => {
 	let selected = [];
-	let search = req.query.search;
-	let offset = req.query.offset || 0;
 	if (req.query.selected) {
 		selected = Array.isArray(req.query.selected) ? req.query.selected : [req.query.selected];
 	}
 
-	res.render('preview-recommendations', {
-		selected: selected,
-		search: search,
-		offset: offset,
-	});
+	try {
+		await recommendationsAPI(selected).then(formattedTracks => {
+			res.render('preview-recommendations', {
+				selected: selected,
+				tracks: formattedTracks
+			});
+		});
+	} catch(error) {
+		return next(error);
+	}
+
+
 });
 
 console.log('Listening on 8888');

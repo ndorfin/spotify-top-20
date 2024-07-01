@@ -5,5 +5,13 @@
 } %}
 {% extends 'layouts/default.njk' %}
 {% block content %}
-	…
+	<ul class="list_tracks">
+		{% for track in tracks %}
+			<li>
+				<dl>
+					{% include 'partials/track_info.njk' %}
+				</dl>
+			</li>
+		{% endfor %}
+	</ul>
 {% endblock%}

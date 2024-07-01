@@ -1,5 +1,6 @@
 const formatTracksDataFromSpotify = require('../formatters/tracks.js');
 const ENDPOINTS = {
+	RECOMMENDATIONS: 'https://api.spotify.com/v1/recommendations',
 	SEARCH: 'https://api.spotify.com/v1/search',
 	TOKEN: 'https://accounts.spotify.com/api/token',
 	TRACKS_INFO: 'https://api.spotify.com/v1/tracks',
@@ -115,8 +116,45 @@ async function tracksInfoAPI(trackIds) {
 	});
 }
 
+async function recommendations(trackIds) {
+	try {
+		const searchParams = new URLSearchParams({
+			seed_tracks: trackIds,
+			limit: 20,
+		});
+		const searchURL = `${ENDPOINTS.RECOMMENDATIONS}?${searchParams}`;
+		const response = await fetch(searchURL, {
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization': 'Bearer ' + accessToken,
+			},
+		});
+		
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`);
+		}
+		
+		return await response.json();
+	
+	} catch (error) {
+		console.error(error.message);
+	}
+}
+
+async function recommendationsAPI(trackIds) {
+	if (tokenIsStale()) {
+		await getToken().then(tokenResponse => {
+			accessToken = tokenResponse.access_token;
+			expiryTime = setNewTokenExpiry(tokenResponse.expires_in);
+		});
+	}
+	return await recommendations(trackIds).then(trackInfoResponse => {
+		return formatTracksDataFromSpotify(trackInfoResponse.tracks);
+	});
+}
 
 module.exports = {
 	searchAPI: searchAPI,
 	tracksInfoAPI: tracksInfoAPI,
+	recommendationsAPI: recommendationsAPI,
 };

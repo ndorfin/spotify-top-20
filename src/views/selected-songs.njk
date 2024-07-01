@@ -5,7 +5,7 @@
 } %}
 {% extends 'layouts/default.njk' %}
 {% block content %}
-	<form action="/get-recommendations" method="GET">
+	<form action="/preview-recommendations" method="GET">
 		<input type="hidden" name="search" value="{{ search }}">
 		<input type="hidden" name="offset" value="{{ offset }}">
 		{% if selected %}

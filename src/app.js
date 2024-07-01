@@ -19,15 +19,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/search', async (req, res, next) => {
-	let search = req.query.search;
-	let offset = req.query.offset || 0;
 	let selected = [];
+	let search = req.query.search;
+	let offset = req.query.new_offset || req.query.offset;
 
 	if (req.query.selected) {
 		selected = Array.isArray(req.query.selected) ? req.query.selected : [req.query.selected];
 	}
-
-	console.log('selected', selected);
 
 	try {
 		await searchAPI(search, offset).then(tracks => {
@@ -44,19 +42,22 @@ app.get('/search', async (req, res, next) => {
 });
 
 app.get('/selected-songs', async (req, res, next) => {
-	let newTrackIds = [req.query.add];
-	let queryValue = req.query.search;
+	let selected = [];
+	let search = req.query.search;
 	let offset = req.query.offset || 0;
-	if (req.query.selected) newTrackIds.push(req.query.selected);
-	
-	console.log('newTrackIds', newTrackIds);
+	if (req.query.selected) {
+		selected = Array.isArray(req.query.selected) ? req.query.selected : [req.query.selected];
+	}
+	if (req.query.add) {
+		selected.push(req.query.add);
+	}
 
 	try {
-		await tracksInfoAPI(newTrackIds).then(formattedTracks => {
+		await tracksInfoAPI(selected).then(formattedTracks => {
 			res.render('selected-songs', {
-				selected: newTrackIds,
-				tracks: [...formattedTracks],
-				search: queryValue,
+				selected: selected,
+				tracks: formattedTracks,
+				search: search,
 				offset: offset,
 			});
 		});
@@ -66,8 +67,18 @@ app.get('/selected-songs', async (req, res, next) => {
 });
 
 app.get('/preview-recommendations', async (req, res) => {
-	let addedTracks = req.query.add;
-	res.render('preview-recommendations', {addedTracks: [...addedTracks]});
+	let selected = [];
+	let search = req.query.search;
+	let offset = req.query.offset || 0;
+	if (req.query.selected) {
+		selected = Array.isArray(req.query.selected) ? req.query.selected : [req.query.selected];
+	}
+
+	res.render('preview-recommendations', {
+		selected: selected,
+		search: search,
+		offset: offset,
+	});
 });
 
 console.log('Listening on 8888');

@@ -39,11 +39,11 @@
 		</ul>
 		<div class="pagination">
 			{% if offset > 4 %}
-				<button type="submit" name="offset" value="{{ (offset | int) - 5 }}">Previous</button>
+				<button type="submit" name="new_offset" value="{{ (offset | int) - 5 }}">Previous</button>
 			{% endif %}
 			<p>Showing {{ (offset | int) + 1 }} to {{ (offset | int) + 5 }} of 20</p>
 			{% if offset < 16 %}
-				<button type="submit" name="offset" value="{{ (offset | int) + 5 }}">Next</button>
+				<button type="submit" name="new_offset" value="{{ (offset | int) + 5 }}">Next</button>
 			{% endif %}
 		</div>
 

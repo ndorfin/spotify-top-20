@@ -41,8 +41,8 @@
 			{% if offset > 4 %}
 				<button type="submit" name="new_offset" value="{{ (offset | int) - 5 }}">Previous</button>
 			{% endif %}
-			<p>Showing {{ (offset | int) + 1 }} to {{ (offset | int) + 5 }} of 20</p>
-			{% if offset < 16 %}
+			<p>Showing {{ (offset | int) + 1 }} to {{ (offset | int) + 5 }}</p>
+			{% if offset < 15  %}
 				<button type="submit" name="new_offset" value="{{ (offset | int) + 5 }}">Next</button>
 			{% endif %}
 		</div>

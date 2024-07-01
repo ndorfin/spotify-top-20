@@ -1,12 +1,11 @@
 {% set page_meta = {
 	title: 'Play me more, DJ!',
 	page_heading: 'Play me more, DJ!',
+	page_description: 'Get recommendations based on songs you love',
 	id: 'home'
 } %}
 {% extends 'layouts/default.njk' %}
 
 {% block content %}
-	<p>Get recommendations based on songs you love</p>
-
 	{% include 'partials/form_search.njk' %}
 {% endblock %}

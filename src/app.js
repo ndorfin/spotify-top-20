@@ -56,17 +56,26 @@ app.get('/selected-songs', async (req, res, next) => {
 		selected.splice(targetIndex, 1);
 	}
 
-	try {
-		await tracksInfoAPI(selected).then(formattedTracks => {
-			res.render('selected-songs', {
-				selected: selected,
-				tracks: formattedTracks,
-				search: search,
-				offset: offset,
+	if (selected.length) {
+		try {
+			await tracksInfoAPI(selected).then(formattedTracks => {
+				res.render('selected-songs', {
+					selected: selected,
+					tracks: formattedTracks,
+					search: search,
+					offset: offset,
+				});
 			});
+		} catch(error) {
+			return next(error);
+		}
+	} else {
+		res.render('selected-songs', {
+			selected: selected,
+			tracks: [],
+			search: search,
+			offset: offset,
 		});
-	} catch(error) {
-		return next(error);
 	}
 });
 

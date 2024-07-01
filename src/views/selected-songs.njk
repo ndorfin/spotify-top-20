@@ -1,6 +1,7 @@
 {% set page_meta = {
 	title: 'Selected songs',
 	page_heading: 'Selected songs',
+	page_description: 'Here are the songs you’ve selected…',
 	id: 'selected-songs'
 } %}
 {% extends 'layouts/default.njk' %}
@@ -8,11 +9,10 @@
 	<form action="/preview-recommendations" method="GET">
 		<input type="hidden" name="search" value="{{ search }}">
 		<input type="hidden" name="offset" value="{{ offset }}">
-		{% if selected %}
+		{% if selected.length %}
 			{% for trackId in selected %}
 				<input type="hidden" name="selected" value="{{ trackId }}">
 			{% endfor %}
-			<p>You've got great taste!</p>
 			<ul class="list_tracks">
 				{% for track in tracks %}
 					<li>
@@ -36,7 +36,10 @@
 				<button type="submit" formaction="/search">Add other songs</button>
 			</div>
 		{% else %}
-			<p>No songs selected yet</p>
+			<p class="show_selected">
+				No songs selected
+				<button type="submit" formaction="/search">Add other songs</button>
+			</p>
 		{% endif %}
 	</form>
 {% endblock %}

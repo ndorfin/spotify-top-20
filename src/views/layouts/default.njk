@@ -9,6 +9,9 @@
 <main>
 	<header>
 		<h1>{{ page_meta.page_heading }}</h1>
+		{% if page_meta.page_description %}
+			<p>{{ page_meta.page_description }}</p>
+		{% endif %}
 	</header>
 	{% block content %}{% endblock %}
 </main>

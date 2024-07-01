@@ -12,7 +12,7 @@ pm-search .form_actions {
 	align-self: end;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 375px) {
 	pm-search form {
 		flex-direction: row;
 		align-items: end;

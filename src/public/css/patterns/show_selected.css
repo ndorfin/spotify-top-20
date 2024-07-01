@@ -1,0 +1,9 @@
+.show_selected {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	text-align: center;
+	inline-size: fit-content;
+	margin-inline: auto;
+	margin-block-start: calc(var(--spacing-container) * 2);
+}

@@ -35,3 +35,7 @@ main {
 	max-inline-size: 37.5rem; /* 600px */
 	margin: auto;
 }
+
+main > header {
+	text-align: center;
+}

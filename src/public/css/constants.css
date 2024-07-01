@@ -3,6 +3,8 @@
 	/* Colours */
 	--color-background-default: #fff;
 	--color-foreground-default: #333;
+	--color-background-inverted: #333;
+	--color-foreground-inverted: #fff;
 	/* Form fields & buttons */
 	--field-border-width: 2px;
 	--field-border-color: var(--color-foreground-default);

@@ -1,0 +1,4 @@
+button[data-scheme="primary"] {
+	background-color: var(--color-background-inverted);
+	color: var(--color-foreground-inverted);
+}

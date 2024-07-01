@@ -1,0 +1,13 @@
+.pagination {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
+	max-inline-size: fit-content;
+	margin-inline: auto;
+	margin-block: var(--spacing-container);
+}
+
+.pagination p {
+	margin: 0;
+}

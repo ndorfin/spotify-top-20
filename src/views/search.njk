@@ -13,10 +13,6 @@
 			{% for track in selected %}
 			<input type="hidden" name="selected" value="{{ track.id }}">
 			{% endfor %}
-			<p>
-				{{ selected.length }} item(s) selected
-				<button type="submit">Back to Preview</button>
-			</p>
 		{% endif %}
 		<p>Showing results for '{{ search }}'</p>
 		<ul class="list_tracks">
@@ -27,7 +23,7 @@
 						<div class="track_actions">
 							<dt>Actions</dt>
 							<dd>
-								<button type="submit" name="selected" value="{{ track.id }}">
+								<button type="submit" name="selected" data-scheme="primary" value="{{ track.id }}">
 									Add
 								</button>
 							</dd>
@@ -36,12 +32,22 @@
 				</li>
 			{% endfor %}
 		</ul>
-		{% if offset > 4 %}
-		<button type="submit" name="offset" value="{{ (offset | int) - 5 }}">Previous</button>
+		<div class="pagination">
+			{% if offset > 4 %}
+				<button type="submit" name="offset" value="{{ (offset | int) - 5 }}">Previous</button>
+			{% endif %}
+			<p>Showing {{ (offset | int) + 1 }} to {{ (offset | int) + 5 }} of 20</p>
+			{% if offset < 16 %}
+				<button type="submit" name="offset" value="{{ (offset | int) + 5 }}">Next</button>
+			{% endif %}
+		</div>
+
+		{% if selected.length > 0 %}
+			<p>
+				{{ selected.length }} item(s) selected
+				<button type="submit">Back to Preview</button>
+			</p>
 		{% endif %}
-		<p>Showing results {{ (offset | int) + 1 }} to {{ (offset | int) + 5 }} of 20</p>
-		{% if offset < 16 %}
-		<button type="submit" name="offset" value="{{ (offset | int) + 5 }}">Next</button>
-		{% endif %}
+
 	</form>
 {% endblock %}

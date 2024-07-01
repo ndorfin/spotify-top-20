@@ -1,6 +1,11 @@
 <pm-search>
 	<form method="GET" action="/search">
 		<input type="hidden" name="offset" value="{{ offset }}">
+		{% if selected.length > 0 %}
+			{% for track in selected %}
+				<input type="hidden" name="selected" value="{{ track.id }}">
+			{% endfor %}
+		{% endif %}
 		<div class="form_row">
 			<label for="input_search">Search for a song:</label>
 			<div class="form_field">
@@ -8,7 +13,7 @@
 			</div>
 		</div>
 		<div class="form_actions">
-			<button type="submit">Search</button>
+			<button type="submit" data-scheme="primary" name="action" value="search">Search</button>
 		</div>
 	</form>
 </pm-search>

@@ -51,6 +51,10 @@ app.get('/selected-songs', async (req, res, next) => {
 	if (req.query.add) {
 		selected.push(req.query.add);
 	}
+	if (req.query.remove) {
+		let targetIndex = selected.indexOf(req.query.remove);
+		selected.splice(targetIndex, 1);
+	}
 
 	try {
 		await tracksInfoAPI(selected).then(formattedTracks => {

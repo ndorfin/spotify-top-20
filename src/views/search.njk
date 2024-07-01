@@ -48,10 +48,9 @@
 		</div>
 
 		{% if selected.length %}
-			{{ selected | dump }}
 			<p>
 				{{ selected.length }} item(s) selected
-				<button type="submit" formaction="/selected-songs">Back to Preview</button>
+				<button type="submit" formaction="/selected-songs">Show my selected songs</button>
 			</p>
 		{% endif %}
 

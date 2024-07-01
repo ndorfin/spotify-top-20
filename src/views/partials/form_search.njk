@@ -1,6 +1,6 @@
 <pm-search>
 	<form method="GET" action="/search">
-		<input type="hidden" name="offset" value="{{ offset }}">
+		<input type="hidden" name="offset" value="0">
 		{% if selected.length %}
 			{% for trackId in selected %}
 				<input type="hidden" name="selected" value="{{ trackId }}">
